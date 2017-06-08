@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<title></title>
+</head>
+<body >
+	<div id="wrapper">
+		<div class="container">
+		    <div class="row">
+		    	<div class="col-lg-4 col-lg-offset-4">
+		    		<div class="input-group">
+		    			<input type="text" name="cnpj" class="form-control col-md-12" />
+					    <span class="input-group-btn">
+					    	<button id="get-cnpj" class="btn btn-primary">Pesquisar</button>
+					    </span>
+		    		</div>
+		    		<ul id="result" class="list-group"></ul>
+		    	</div>
+		    </div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+					  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+					  crossorigin="anonymous">			  	
+	</script>
+
+    <script type="text/javascript">
+    	$(document).ready(function() {
+	    	$("#get-cnpj").click(function(e) {
+	    		var cnpj = $("input[name=cnpj]").val()	
+          		$.ajax({
+            		type: "GET",
+            		url: '/cnpj?cnpj=' + cnpj,
+            		dataType: 'json',
+            		success: function(data) {
+            			for(var i =0; i<data.length; i++){
+            				console.log(data[i])
+            				$('#result').append("<li class='list-group-item'>" + data[i] + "</li>")	
+            			}
+            		}
+          		})
+          	e.preventDefault();
+        	});    
+    	})	
+    </script>
+</body>
+</html>
