@@ -1,30 +1,25 @@
+from Apriori import *
 import os, os.path
 import cherrypy
 import rpy2.robjects as ro
 import rpy2.robjects.packages as rpackages
 from rpy2.robjects.packages import importr
 import mysql.connector
-from APIBanco import *
-from APIRegras import *
-import time
+from Banco import *
 
 
 class AprioriApp(object):
 	@cherrypy.expose
 	def index(self):
-		return open('interface.html')
+		return open('view.html')
 
 @cherrypy.expose
 class AprioriAPI(object):
 	@cherrypy.tools.json_out()
 	def GET(self, cnpj):
-		ini = time.time()
-		data = APIBanco().search(cnpj)
-		regras = APIRegras().applyApriori()
-		cnpjs = APIBanco().searchCNPJS(regras)
-		fim = time.time()
-		print("\n\n\n\n\n\n TEMPO: \n\n\n\n\n\n", fim-ini)
-		retorno = str(cnpjs)
+		cnpjs = Banco().searchCNPJS(cnpj);
+		regras = Apriori().extractRules(cnpjs)
+		cnpjs = Banco().formatCNPJS(regras)
 		return cnpjs
 
 if __name__ == '__main__':

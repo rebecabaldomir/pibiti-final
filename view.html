@@ -16,7 +16,30 @@
 					    	<button id="get-cnpj" class="btn btn-primary">Pesquisar</button>
 					    </span>
 		    		</div>
-		    		<ul id="result" class="list-group"></ul>
+		    		<table id="result" class="table">
+		    			<thead>
+		    				<tr>
+		    					<th>
+		    						Empresa
+		    					</th>
+		    					<th>
+		    						Comprou com 
+		    					</th>
+		    					<th>
+		    						Suporte
+		    					</th>
+		    					<th>
+		    						Confiança
+		    					</th>
+		    					<th>
+		    						Ganhou a licitação?
+		    					</th>
+		    				</tr>
+		    			</thead>
+		    			<tbody>
+		    				
+		    			</tbody>
+		    		</table>
 		    	</div>
 		    </div>
 		</div>
@@ -37,8 +60,8 @@
             		dataType: 'json',
             		success: function(data) {
             			for(var i =0; i<data.length; i++){
-            				console.log(data[i])
-            				$('#result').append("<li class='list-group-item'>" + data[i] + "</li>")	
+            				cnpjs = data[i].split(" => ")
+            				$('#result tbody').append("<tr> <td>" + cnpjs[0] + "</td><td>" + cnpjs[1] + "</td> <td>"+"25%"+" </td><td>"+"1"+"</td></tr>")	
             			}
             		}
           		})
