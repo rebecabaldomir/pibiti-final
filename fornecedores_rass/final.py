@@ -12,15 +12,26 @@ class AprioriApp(object):
 	@cherrypy.expose
 	def index(self):
 		return open('view.html')
+	
+	def compras(self):
+		return open('verifica_vencendor.html')
 
 @cherrypy.expose
-class AprioriAPI(object):
+class AprioriCNPJ(object):
 	@cherrypy.tools.json_out()
 	def GET(self, cnpj):
-		cnpjs = Banco().searchCNPJS(cnpj);
+		cnpjs = Banco().searchCNPJS(cnpj)
 		regras = Apriori().extractRules(cnpjs)
 		cnpjs = Banco().formatCNPJS(regras)
 		return cnpjs
+
+@cherrypy.expose
+class CompraPorCNPJ(object):
+	@cherrypy.tools.json_out()
+	def GET(self, idcompra):
+		compras_cnpj = Banco().searchCompras(idcompra)
+		return idcompra
+
 
 if __name__ == '__main__':
 	conf = {
@@ -34,11 +45,17 @@ if __name__ == '__main__':
 			'tools.response_headers.on': True,
 			'tools.response_headers.headers': [('Content-Type', 'application/json')],
 		},
+		'/compras': {
+			'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+			'tools.response_headers.on': True,
+			'tools.response_headers.headers': [('Content-Type', 'application/json')],
+		},
 		'/css': {
           'tools.staticdir.on': True,
           'tools.staticdir.dir': os.path.join(os.path.dirname(os.path.abspath(__file__)), 'css/')
         }
 	}
 	webapp = AprioriApp()
-	webapp.cnpj = AprioriAPI()
+	webapp.cnpj = AprioriCNPJ()
+	webapp.compras = CompraPorCNPJ()
 	cherrypy.quickstart(webapp, '/', conf)

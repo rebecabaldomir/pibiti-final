@@ -33,5 +33,28 @@
 			</div>
 		</div>
 	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+					  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+					  crossorigin="anonymous">			  	
+	</script>
+
+    <script type="text/javascript">
+    	$(document).ready(function() {
+	    	var idcompra = $("input[name=idcompra]").val()	
+          	$.ajax({
+            	type: "GET",
+            	url: '/idcompra?idcompra=' + idcompra,
+            	dataType: 'json',
+            	success: function(data) {
+            		for(var i =0; i<data.length; i++){
+            			cnpjs = data[i].split(" => ")
+            			$('#result tbody').append("<tr> <td>" + cnpjs[0] + "</td><td>" + cnpjs[1] + "</td> <td>"+"25%"+" </td><td>"+"1"+"</td></tr>")	
+            		}
+            	}
+          	})
+        e.preventDefault();   
+    });	
+    </script>
 </body>
 </html>

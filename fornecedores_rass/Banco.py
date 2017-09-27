@@ -1,5 +1,6 @@
 import mysql.connector
 from pandas import *
+import rpy2
 
 class Banco(object):
 	def searchCNPJS(self,cnpj):
@@ -19,7 +20,8 @@ class Banco(object):
 			dados = []
 			antes_da_seta = []
 			depois_da_seta = []
-			print(regras[3])
+			if(type(regras) == rpy2.rinterface.RNULLType):
+				return dados
 			for label in regras[0].iter_labels():
 				antes_da_seta.append(label)
 			for label in regras[2].iter_labels():
@@ -32,18 +34,15 @@ class Banco(object):
 				#dados.append(regras[4])
 			return dados
 
-	def verififyWinner(self, cnpj):
-		try:
-		     conn = mysql.connector.connect(host="localhost",
-					     user="root",
-					     passwd="root",
-					     db="mydb") 
-		except:
-		    print("I am unable to connect to the database")
-		    
-		result = read_sql('select valorpreco from licitacoes where cnpj= ' + cnpj + ')  limit 50;', conn)
-		conn.close()
-		if(result > 0):
-			return "SIM"
-		else:
-			return "NAO"
+	#def searchCompras(self, idcompra)
+	#	try:
+	#		conn = mysql.connector.connect(host="localhost",
+	#					     user="root",
+	#					     passwd="root",
+	#					     db="mydb") 
+	#	except:
+	#		print("I am unable to connect to the database")
+	#		    
+	#	dfsql = read_sql('select iditemcompra, cnpj from licitacoes where iditemcompra =' + idcompra + ')  limit 50;', conn)
+	#	conn.close()
+	#	return dfsql
