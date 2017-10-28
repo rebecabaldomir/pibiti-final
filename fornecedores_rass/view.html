@@ -29,6 +29,10 @@
   font-weight: bold;
 }
 
+#coluna-img{
+	display: block;
+}
+
 </style>
 <body >
 	<div id="wrapper">
@@ -50,14 +54,15 @@
 		    					<th>
 		    						Participou com 
 		    					</th>
-		    					<th>
-		    						Suporte
+		    					<th class="coluna-img">
+		    						Suporte <img src="css/idea.png" alt="" height="20" width="20" data-toggle="tooltip" title="Chance da regra aparecer novamente na base de dados analisada."> 
+		    						
 		    					</th>
-		    					<th>
-		    						Confiança
+		    					<th >
+		    						Confiança <img src="css/idea.png" alt="" height="20" width="20" data-toggle="tooltip" title="Número de  vezes que a regra apareceu corretamente, quanto maior a confiança, melhor é a qualidade da regra.">
 		    					</th>
-		    					<th>
-		    						Lift
+		    					<th >
+		    						Lift <img src="css/idea.png" alt="" height="20" width="20" data-toggle="tooltip" title="Medida de desempenho da regra.">
 		    					</th>
 		    				</tr>
 		    			</thead>
@@ -78,7 +83,10 @@
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 					  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-					  crossorigin="anonymous">			  	
+					  crossorigin="anonymous">
+	$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip();
+	});			  	
 	</script>
 
     <script type="text/javascript">
