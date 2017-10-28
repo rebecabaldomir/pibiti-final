@@ -98,6 +98,7 @@
             			if(data == null||data == undefined || data.length == 0){
             				$('#texto').append("<br/> Não há regras!")
             			} else{
+            				console.log(data.length)
             				for(var i =0; i<data.length; i++){
 	            				cnpjs = data[i].split(" => ")
 	            				if(cnpjs[0] == cnpj) {
@@ -107,7 +108,7 @@
 	            				if(cnpjs[1] == cnpj) {
 	            					cnpjs[1] = "<b>" + cnpjs[1] + "</b>"
 	            				}
-	            				$('#result tbody').append("<tr> <td>" + cnpjs[0] + "</td><td>" + cnpjs[1] + "</td> <td>"+"25%"+" </td><td>"+"1"+"</td></tr>")	
+	            				$('#result tbody').append("<tr> <td>" + cnpjs[0] + "</td><td>" + cnpjs[1] + "</td> <td>"+cnpjs[2]+" </td><td>"+cnpjs[3]+"</td></tr>")	
             				}
             			}
             		}
