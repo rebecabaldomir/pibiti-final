@@ -22,6 +22,7 @@ class Banco(object):
 			depois_da_seta = []
 			suporte = []
 			confianca = []
+			lift = []
 			if(type(regras) == rpy2.rinterface.RNULLType):
 				return dados
 			for label in regras[0].iter_labels():
@@ -36,10 +37,14 @@ class Banco(object):
 			for label in regras[4]:
 				confianca.append(label)
 
+			for label in regras[5]:
+				lift.append(label)
+
 			for i in range(0, len(antes_da_seta)):
 				value1 = antes_da_seta[i].replace("{", "").replace("}","")
 				value2 = depois_da_seta[i].replace("{", "").replace("}","")
-				dados.append(value1 + " => " + value2 + " => " + str(suporte[1]) + " => " + str(confianca[1]))
+				dados.append(value1 + " => " + value2 + " => " + str(suporte[1]) 
+					+ " => " + str(confianca[1]) + " => " + str(lift[1]))
 			return dados
 
 	#def searchCompras(self, idcompra)
