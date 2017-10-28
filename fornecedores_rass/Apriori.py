@@ -32,9 +32,9 @@ class Apriori(object):
 		# apply apriori
 		trans = r_as(splitdf, "transactions")
 		rules = r_apriori(trans, parameter = r_list(minlen = 2,supp = 0.2, conf = 0.98, target = "rules"))
-		#teste = r_inspect(robjects.r["head"](robjects.r["sort"](rules, by="lift")
+		teste = r_inspect(robjects.r["head"](robjects.r["sort"](rules, by="lift"),3));
 		#teste = r_inspect(robjects.r["sort"](teste, by="lift"));
 		#print(teste)
-		return rules
+		return teste
 
 
