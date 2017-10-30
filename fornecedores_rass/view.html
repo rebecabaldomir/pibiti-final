@@ -38,13 +38,13 @@
 	<div id="wrapper">
 		<div class="container">
 		    <div class="row">
-		    	<div class="col-lg-4 col-lg-offset-4">
-		    		<div class="input-group">
-		    			<input type="text" name="cnpj" class="form-control col-md-12" />
+		    	<div class="input-group col-md-4  col-md-offset-4">
+		    			<input type="text" name="cnpj" class="form-control" />
 					    <span class="input-group-btn">
 					    	<button id="get-cnpj" class="btn btn-primary">Pesquisar</button>
 					    </span>
-		    		</div>
+		    	</div>
+		    	<div class="col-lg-4 col-lg-offset-3">
 		    		<table id="result" class="table">
 		    			<thead>
 		    				<tr>
@@ -52,17 +52,26 @@
 		    						Empresa
 		    					</th>
 		    					<th>
-		    						Participou com 
+			    					<div style="width: 110px">
+			    						Participou com 
+			    					</div>
 		    					</th>
 		    					<th class="coluna-img">
-		    						Suporte <img src="css/idea.png" alt="" height="20" width="20" data-toggle="tooltip" title="Chance da regra aparecer novamente na base de dados analisada."> 
-		    						
+		    						<div style="width: 100px;">
+		    							<span>Suporte</span> 
+		    							<img src="css/idea.png" alt="" height="20" width="20" data-toggle="tooltip" title="Chance da regra aparecer novamente na base de dados analisada."/	> 	
+		    						</div>
 		    					</th>
 		    					<th >
+		    						<div style="width: 100px;">
 		    						Confiança <img src="css/idea.png" alt="" height="20" width="20" data-toggle="tooltip" title="Número de  vezes que a regra apareceu corretamente, quanto maior a confiança, melhor é a qualidade da regra.">
+		    						</div>
 		    					</th>
 		    					<th >
+		    						<div style="width: 100px;">
 		    						Lift <img src="css/idea.png" alt="" height="20" width="20" data-toggle="tooltip" title="Medida de desempenho da regra.">
+		    						</div>
+		    						
 		    					</th>
 		    				</tr>
 		    			</thead>
