@@ -22,8 +22,9 @@ class AprioriCNPJ(object):
 	def GET(self, cnpj):
 		cnpjs = Banco().searchCNPJS(cnpj)
 		regras = Apriori().extractRules(cnpjs)
-		cnpjs = Banco().formatCNPJS(regras)
-		return cnpjs
+		cnpjs = Banco().extractCNPJs(regras)
+		
+		return Banco().formatCNPJS(regras, cnpj)
 
 @cherrypy.expose
 class CompraPorCNPJ(object):
